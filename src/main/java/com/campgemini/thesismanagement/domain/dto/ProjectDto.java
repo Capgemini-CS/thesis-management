@@ -1,26 +1,20 @@
-package com.campgemini.thesismanagement.domain;
+package com.campgemini.thesismanagement.domain.dto;
 
+import com.campgemini.thesismanagement.domain.Student;
+import com.campgemini.thesismanagement.domain.Teacher;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "projects")
-public class Project {
+@NoArgsConstructor
+public class ProjectDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_project")
     private Integer idProject;
 
-    @OneToOne(mappedBy = "project")
     private Student student;
 
-    @ManyToOne(fetch = FetchType.EAGER)
     private Teacher teacher;
 
     private String projectTitle;
@@ -28,4 +22,8 @@ public class Project {
     private String projectDescription;
 
     private Boolean projectAvailability;
+
+
+
+
 }
