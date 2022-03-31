@@ -5,17 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Student {
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_student")
-    private Integer idStudent;
+    @Column(name="id_teacher")
+    private Integer idTeacher;
 
     private String firstName;
 
@@ -25,9 +27,9 @@ public class Student {
 
     private String CNP;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    private Integer numberOfStudents;
+
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_project")
-    private Project project;
-
-
+    private List<Project> projectsList;
 }
