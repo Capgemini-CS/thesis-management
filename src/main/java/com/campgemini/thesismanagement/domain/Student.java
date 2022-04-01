@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "student")
 public class Student {
 
     @Id
@@ -21,8 +22,10 @@ public class Student {
 
     private String lastName;
 
+    @Email
     private String email;
 
+    @Column(unique = true, length = 13)
     private String CNP;
 
     @OneToOne(cascade = CascadeType.ALL)

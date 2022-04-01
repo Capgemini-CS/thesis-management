@@ -1,5 +1,7 @@
 package com.campgemini.thesismanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "teacher")
 public class Teacher {
 
     @Id
@@ -29,7 +31,8 @@ public class Teacher {
 
     private Integer numberOfStudents;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_project")
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
+   // @JoinColumn(name = "id_project")
+    @JsonIgnore
     private List<Project> projectsList;
 }

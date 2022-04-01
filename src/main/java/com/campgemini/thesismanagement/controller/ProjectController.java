@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<ProjectDto>> getAllProjects() {
         return new ResponseEntity<>(projectService.findAllProjects(), HttpStatus.OK);
     }
@@ -30,8 +31,8 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.findProjectById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<ProjectDto> saveProject(ProjectDto projectDto){
+    @PostMapping("/")
+    public ResponseEntity<ProjectDto> saveProject(@Valid @RequestBody ProjectDto projectDto){
         return new ResponseEntity<>(projectService.addProject(projectDto), HttpStatus.CREATED);
     }
 }

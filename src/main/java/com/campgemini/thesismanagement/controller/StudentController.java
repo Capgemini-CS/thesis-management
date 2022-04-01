@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<StudentDto>> getAllStudents() {
         return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
     }
@@ -31,8 +32,8 @@ public class StudentController {
         return new ResponseEntity<>(studentService.findStudentById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<StudentDto> saveStudent(StudentDto studentDto){
+    @PostMapping()
+    public ResponseEntity<StudentDto> saveStudent(@Valid @RequestBody StudentDto studentDto){
         return new ResponseEntity<>(studentService.addStudent(studentDto), HttpStatus.CREATED);
     }
 }

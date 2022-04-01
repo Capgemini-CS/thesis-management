@@ -1,6 +1,5 @@
 package com.campgemini.thesismanagement.controller;
 
-import com.campgemini.thesismanagement.domain.dto.ProjectDto;
 import com.campgemini.thesismanagement.domain.dto.TeacherDto;
 import com.campgemini.thesismanagement.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,18 +22,18 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<TeacherDto>> getAllTeachers() {
         return new ResponseEntity<>(teacherService.findAllTeachers(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TeacherDto> getTeacherById(@PathVariable int id) {
+    @GetMapping("/")
+    public ResponseEntity<TeacherDto> getTeacherById(@RequestParam int id) {
         return new ResponseEntity<>(teacherService.findTeacherById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<TeacherDto> saveTeacher(TeacherDto teacherDto){
+    @PostMapping("/")
+    public ResponseEntity<TeacherDto> saveTeacher(@Valid @RequestBody TeacherDto teacherDto){
         return new ResponseEntity<>(teacherService.addTeacher(teacherDto), HttpStatus.CREATED);
     }
 

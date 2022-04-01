@@ -18,6 +18,7 @@ public class TeacherDto {
     private String email;
     private String CNP;
     private Integer numberOfStudents;
+
     private List<Project> projectsList;
 
 }
