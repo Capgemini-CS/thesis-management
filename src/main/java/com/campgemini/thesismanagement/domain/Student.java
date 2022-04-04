@@ -28,7 +28,7 @@ public class Student {
     @Column(unique = true, length = 13)
     private String CNP;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_project")
     private Project project;
 

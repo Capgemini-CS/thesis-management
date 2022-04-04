@@ -1,6 +1,7 @@
 package com.campgemini.thesismanagement.domain.dto;
 
 import com.campgemini.thesismanagement.domain.Project;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ public class StudentDto {
     private String lastName;
     private String email;
     private String CNP;
+    @JsonIgnore
     private Project project;
+    private Integer idProject; //
 
 }

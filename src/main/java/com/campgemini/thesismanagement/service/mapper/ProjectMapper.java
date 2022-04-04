@@ -9,6 +9,7 @@ public class ProjectMapper {
         ProjectDto projectDto = new ProjectDto();
         projectDto.setIdProject(project.getIdProject());
         projectDto.setStudent(project.getStudent());
+        projectDto.setIdStudent(project.getStudent().getIdStudent());
         projectDto.setTeacher(project.getTeacher());
         projectDto.setIdTeacher(project.getTeacher().getIdTeacher());
         projectDto.setProjectTitle(project.getProjectTitle());
