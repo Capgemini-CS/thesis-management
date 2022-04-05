@@ -43,8 +43,7 @@ public class ProjectService {
     }
 
     public ProjectDto addProject(ProjectDto projectDto){
-        projectDto.setTeacher(teacherRepository.getById(projectDto.getIdTeacher()));
-        projectDto.setStudent(studentRepository.getById(projectDto.getIdStudent()));
+      //  projectDto.setTeacher(teacherRepository.getById(projectDto.getIdTeacher()));
         Project project = projectRepository.save(ProjectMapper.projectDtoToProject(projectDto));
         return ProjectMapper.projectToProjectDto(project);
     }

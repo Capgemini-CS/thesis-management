@@ -31,8 +31,8 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.findProjectById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<ProjectDto> saveProject(@Valid @RequestBody ProjectDto projectDto){
-        return new ResponseEntity<>(projectService.addProject(projectDto), HttpStatus.CREATED);
-    }
+//    @PostMapping()
+//    public ResponseEntity<ProjectDto> saveProject(@Valid ProjectDto projectDto){
+//        return new ResponseEntity<>(projectService.addProject(projectDto), HttpStatus.CREATED);
+//    }
 }

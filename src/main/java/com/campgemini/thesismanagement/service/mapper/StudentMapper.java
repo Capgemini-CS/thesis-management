@@ -2,6 +2,7 @@ package com.campgemini.thesismanagement.service.mapper;
 
 import com.campgemini.thesismanagement.domain.Student;
 import com.campgemini.thesismanagement.domain.dto.StudentDto;
+import com.campgemini.thesismanagement.domain.dto.StudentProjectDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +17,8 @@ public class StudentMapper {
         studentDTO.setLastName(student.getLastName());
         studentDTO.setEmail(student.getEmail());
         studentDTO.setCNP(student.getCNP());
-        studentDTO.setProject(student.getProject());
-        studentDTO.setIdProject(student.getProject().getIdProject());
+        studentDTO.setStudentProject(student.getStudentProject());
+        studentDTO.setIdStudentProject(student.getStudentProject().getIdStudentProject());
         return studentDTO;
     }
 
@@ -28,7 +29,7 @@ public class StudentMapper {
         student.setLastName(studentDto.getLastName());
         student.setEmail(studentDto.getEmail());
         student.setCNP(studentDto.getCNP());
-        student.setProject(studentDto.getProject());
+       // student.setProject(studentDto.getProject());
         return student;
     }
 }

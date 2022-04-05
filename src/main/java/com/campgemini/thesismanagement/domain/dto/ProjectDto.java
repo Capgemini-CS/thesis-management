@@ -1,6 +1,6 @@
 package com.campgemini.thesismanagement.domain.dto;
 
-import com.campgemini.thesismanagement.domain.Student;
+import com.campgemini.thesismanagement.domain.StudentProject;
 import com.campgemini.thesismanagement.domain.Teacher;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -17,14 +17,15 @@ public class ProjectDto {
     private Integer idProject;
 
     @JsonIgnore
-    private Student student;
+    private StudentProject studentProject;
 
-    private Integer idStudent; // !
+    @JsonIgnore
+    private Integer idStudentProject;
 
     @JsonIgnore
     private Teacher teacher;
 
-    private Integer idTeacher; // !!!
+    private Integer idTeacher;
 
     private String projectTitle;
 

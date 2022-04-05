@@ -1,5 +1,6 @@
 package com.campgemini.thesismanagement.controller;
 
+import com.campgemini.thesismanagement.domain.dto.ProjectDto;
 import com.campgemini.thesismanagement.domain.dto.TeacherDto;
 import com.campgemini.thesismanagement.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,32 @@ public class TeacherController {
         return new ResponseEntity<>(teacherService.findAllTeachers(), HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping("/{id}")
     public ResponseEntity<TeacherDto> getTeacherById(@RequestParam int id) {
         return new ResponseEntity<>(teacherService.findTeacherById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<TeacherDto> saveTeacher(@Valid @RequestBody TeacherDto teacherDto){
         return new ResponseEntity<>(teacherService.addTeacher(teacherDto), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{id}/projects")
+    public ResponseEntity<ProjectDto> addProject(@PathVariable int id, @RequestBody ProjectDto projectDto){
+        return new ResponseEntity<>(teacherService.addTeacherProject(id, projectDto), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}/project")
+    public ResponseEntity<List<ProjectDto>> getAllTeacherProjects(@PathVariable int id){
+        return new ResponseEntity<>(teacherService.findAllTeacherProjects(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/projects/{idProject}")
+    public ResponseEntity<ProjectDto> updateTeacherProjects(@PathVariable("id") int id,
+                                                            @PathVariable("idProject") int idProject,
+                                                            @RequestBody ProjectDto projectDto
+                                                            ){
+        return new ResponseEntity<ProjectDto>(teacherService.updateTeacherProject(id, idProject, projectDto), HttpStatus.OK);
     }
 
 

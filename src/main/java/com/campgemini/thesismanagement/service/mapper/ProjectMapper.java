@@ -8,8 +8,8 @@ public class ProjectMapper {
     public static ProjectDto projectToProjectDto(Project project){
         ProjectDto projectDto = new ProjectDto();
         projectDto.setIdProject(project.getIdProject());
-        projectDto.setStudent(project.getStudent());
-        projectDto.setIdStudent(project.getStudent().getIdStudent());
+      //  projectDto.setStudentProject(project.getStudentProject());
+       // projectDto.setIdStudentProject(project.getStudentProject().getIdStudentProject());
         projectDto.setTeacher(project.getTeacher());
         projectDto.setIdTeacher(project.getTeacher().getIdTeacher());
         projectDto.setProjectTitle(project.getProjectTitle());
@@ -22,7 +22,7 @@ public class ProjectMapper {
     public static Project projectDtoToProject(ProjectDto projectDto){
         Project project = new Project();
         project.setIdProject(projectDto.getIdProject());
-        project.setStudent(projectDto.getStudent());
+      //  project.setStudent(projectDto.getStudent());
         project.setTeacher(projectDto.getTeacher());
         project.setProjectTitle(projectDto.getProjectTitle());
         project.setProjectDescription(projectDto.getProjectDescription());
