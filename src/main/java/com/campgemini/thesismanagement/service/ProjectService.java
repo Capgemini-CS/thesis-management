@@ -3,6 +3,7 @@ package com.campgemini.thesismanagement.service;
 import com.campgemini.thesismanagement.domain.Project;
 import com.campgemini.thesismanagement.domain.dto.ProjectDto;
 import com.campgemini.thesismanagement.repository.ProjectRepository;
+import com.campgemini.thesismanagement.repository.StudentProjectRepository;
 import com.campgemini.thesismanagement.repository.StudentRepository;
 import com.campgemini.thesismanagement.repository.TeacherRepository;
 import com.campgemini.thesismanagement.service.mapper.ProjectMapper;
@@ -24,11 +25,15 @@ public class ProjectService {
     @Autowired
     private final StudentRepository studentRepository;
 
+    @Autowired
+    private final StudentProjectRepository studentProjectRepository;
 
-    public ProjectService(ProjectRepository projectRepository, TeacherRepository teacherRepository, StudentRepository studentRepository) {
+
+    public ProjectService(ProjectRepository projectRepository, TeacherRepository teacherRepository, StudentRepository studentRepository, StudentProjectRepository studentProjectRepository) {
         this.projectRepository = projectRepository;
         this.teacherRepository = teacherRepository;
         this.studentRepository = studentRepository;
+        this.studentProjectRepository = studentProjectRepository;
     }
 
     public List<ProjectDto> findAllProjects() {
@@ -44,6 +49,7 @@ public class ProjectService {
 
     public ProjectDto addProject(ProjectDto projectDto){
       //  projectDto.setTeacher(teacherRepository.getById(projectDto.getIdTeacher()));
+       // projectDto.setStudentProject(studentProjectRepository.getById(projectDto.getIdStudentProject()));
         Project project = projectRepository.save(ProjectMapper.projectDtoToProject(projectDto));
         return ProjectMapper.projectToProjectDto(project);
     }

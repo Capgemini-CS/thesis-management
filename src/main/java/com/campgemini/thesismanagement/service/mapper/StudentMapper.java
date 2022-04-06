@@ -17,8 +17,8 @@ public class StudentMapper {
         studentDTO.setLastName(student.getLastName());
         studentDTO.setEmail(student.getEmail());
         studentDTO.setCNP(student.getCNP());
-        studentDTO.setStudentProject(student.getStudentProject());
-        studentDTO.setIdStudentProject(student.getStudentProject().getIdStudentProject());
+        //studentDTO.setStudentProject(student.getStudentProject());
+        //studentDTO.setIdStudentProject(student.getStudentProject().getIdStudentProject());
         return studentDTO;
     }
 

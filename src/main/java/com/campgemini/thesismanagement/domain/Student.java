@@ -37,7 +37,7 @@ public class Student {
 //    private Project project;
 
     @OneToOne(mappedBy = "student" )
-     private StudentProject studentProject;
+    private StudentProject studentProject;
 
 
 }
