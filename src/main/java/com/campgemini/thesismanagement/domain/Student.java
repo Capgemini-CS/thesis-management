@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -31,10 +30,6 @@ public class Student {
 
     @Column(name = "cnp")
     private String CNP;
-
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id_project")
-//    private Project project;
 
     @OneToOne(mappedBy = "student" )
     private StudentProject studentProject;
