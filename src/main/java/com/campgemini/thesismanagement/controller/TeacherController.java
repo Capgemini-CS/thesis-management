@@ -29,7 +29,7 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TeacherDto> getTeacherById(@RequestParam int id) {
+    public ResponseEntity<TeacherDto> getTeacherById(@PathVariable int id) {
         return new ResponseEntity<>(teacherService.findTeacherById(id), HttpStatus.OK);
     }
 
