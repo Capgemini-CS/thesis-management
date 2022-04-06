@@ -1,10 +1,14 @@
 package com.campgemini.thesismanagement.service;
 
 import com.campgemini.thesismanagement.domain.Student;
+import com.campgemini.thesismanagement.domain.StudentProject;
 import com.campgemini.thesismanagement.domain.dto.StudentDto;
+import com.campgemini.thesismanagement.domain.dto.StudentProjectDto;
 import com.campgemini.thesismanagement.repository.ProjectRepository;
+import com.campgemini.thesismanagement.repository.StudentProjectRepository;
 import com.campgemini.thesismanagement.repository.StudentRepository;
 import com.campgemini.thesismanagement.service.mapper.StudentMapper;
+import com.campgemini.thesismanagement.service.mapper.StudentProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +24,17 @@ public class StudentService {
     @Autowired
     private final ProjectRepository projectRepository;
 
-    public StudentService(StudentRepository studentRepository, ProjectRepository projectRepository) {
+    @Autowired
+    private final StudentProjectRepository studentProjectRepository;
+
+    @Autowired
+    private final ProjectService projectService;
+
+    public StudentService(StudentRepository studentRepository, ProjectRepository projectRepository, StudentProjectRepository studentProjectRepository, ProjectService projectService) {
         this.studentRepository = studentRepository;
         this.projectRepository = projectRepository;
+        this.studentProjectRepository = studentProjectRepository;
+        this.projectService = projectService;
     }
 
     public List<StudentDto> findAllStudents() {
@@ -37,9 +49,21 @@ public class StudentService {
     }
 
     public StudentDto addStudent(StudentDto studentDto){
-        studentDto.setProject(projectRepository.getById(studentDto.getIdProject()));
         Student student = studentRepository.save(StudentMapper.studentDtoToStudent(studentDto));
         return StudentMapper.studentToStudentDto(student);
+    }
+
+    public StudentProjectDto requestProject(int idStudent, int idProject){
+        StudentProjectDto studentProjectDto = new StudentProjectDto();
+        studentProjectDto.setIdStudent(studentRepository.getById(idStudent).getIdStudent());
+        studentProjectDto.setIdProject(projectRepository.getById(idProject).getIdProject());
+
+        studentRepository.getById(idStudent).setStudentProject(StudentProjectMapper.toStudentProject(studentProjectDto));
+        projectRepository.getById(idProject).setStudentProject(StudentProjectMapper.toStudentProject(studentProjectDto));
+
+        StudentProject studentProject = studentProjectRepository.save(StudentProjectMapper.toStudentProject(studentProjectDto));
+        return StudentProjectMapper.toStudentProjectDto(studentProject);
+
     }
 
 

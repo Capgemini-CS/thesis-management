@@ -11,27 +11,29 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "project")
+@Entity(name = "projects")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_project")
+    @Column(name= "id_project")
     private Integer idProject;
 
-    @OneToOne(mappedBy = "project")
-    private Student student;
+    @OneToOne(mappedBy = "student" )
+    private StudentProject studentProject; //
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_teacher")
     @JsonIgnore
     private Teacher teacher;
 
-    @Column(nullable = false)
+    @Column(name = "project_title")
     private String projectTitle;
 
     @NotEmpty
+    @Column(name = "project_description")
     private String projectDescription;
 
+    @Column(name = "project_availability")
     private Boolean projectAvailability;
 }

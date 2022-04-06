@@ -6,31 +6,38 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "student")
+@Entity(name = "students")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_student")
+    @Column(name = "id_student")
     private Integer idStudent;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
     @Email
+    @Column(name = "email")
     private String email;
 
-    @Column(unique = true, length = 13)
+    @Column(name = "cnp")
     private String CNP;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_project")
-    private Project project;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_project")
+//    private Project project;
+
+    @OneToOne(mappedBy = "student" )
+    private StudentProject studentProject;
 
 
 }

@@ -1,6 +1,7 @@
 package com.campgemini.thesismanagement.controller;
 
 import com.campgemini.thesismanagement.domain.dto.StudentDto;
+import com.campgemini.thesismanagement.domain.dto.StudentProjectDto;
 import com.campgemini.thesismanagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<StudentDto>> getAllStudents() {
         return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
     }
@@ -32,8 +33,19 @@ public class StudentController {
         return new ResponseEntity<>(studentService.findStudentById(id), HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<StudentDto> saveStudent(@Valid @RequestBody StudentDto studentDto){
         return new ResponseEntity<>(studentService.addStudent(studentDto), HttpStatus.CREATED);
     }
+
+    @PostMapping("/{idStudent}/projects/{idProject}")
+    public ResponseEntity<StudentProjectDto> requestProject(@PathVariable("idStudent") int idStudent,
+                                                            @PathVariable("idProject") int idProject
+                                                            ){
+        return new ResponseEntity<>(studentService.requestProject(idStudent, idProject), HttpStatus.OK);
+    }
+
+
+
+
 }
