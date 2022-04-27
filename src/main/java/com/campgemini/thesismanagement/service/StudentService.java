@@ -55,17 +55,13 @@ public class StudentService {
 
     public StudentProjectDto requestProject(int idStudent, int idProject){
         StudentProjectDto studentProjectDto = new StudentProjectDto();
-        studentProjectDto.setIdStudent(studentRepository.getById(idStudent).getIdStudent());
-        studentProjectDto.setIdProject(projectRepository.getById(idProject).getIdProject());
-
-        studentRepository.getById(idStudent).setStudentProject(StudentProjectMapper.toStudentProject(studentProjectDto));
-        projectRepository.getById(idProject).setStudentProject(StudentProjectMapper.toStudentProject(studentProjectDto));
-
+        studentProjectDto.setIdStudent(idStudent);
+        studentProjectDto.setStudent(studentRepository.getById(idStudent));
+        studentProjectDto.setProject(projectRepository.getById(idProject));
+        studentProjectDto.setIdProject(idProject);
         StudentProject studentProject = studentProjectRepository.save(StudentProjectMapper.toStudentProject(studentProjectDto));
         return StudentProjectMapper.toStudentProjectDto(studentProject);
-
     }
-
 
 
 }

@@ -13,8 +13,8 @@ public class StudentProjectMapper {
     public static StudentProjectDto toStudentProjectDto(StudentProject studentProject){
         StudentProjectDto studentProjectDto = new StudentProjectDto();
         studentProjectDto.setIdStudentProject(studentProject.getIdStudentProject());
-        studentProjectDto.setIdStudent(studentProjectDto.getIdStudent());
-        studentProjectDto.setIdProject(studentProjectDto.getIdProject());
+        studentProjectDto.setIdStudent(studentProject.getStudent().getIdStudent());
+        studentProjectDto.setIdProject(studentProject.getProject().getIdProject());
         return studentProjectDto;
     }
 
